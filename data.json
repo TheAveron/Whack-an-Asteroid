@@ -1,0 +1,9 @@
+{
+    "width":800,
+    "height":800,
+    "jeu_en_cours":true,
+    "clic":false,
+    "cycle":0,
+    "cycle_lenght":600,
+    "resultat":null
+}
