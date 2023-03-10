@@ -5,5 +5,8 @@
     "clic":false,
     "cycle":0,
     "cycle_lenght":600,
-    "resultat":null
+    "resultat":null,
+    "back-color":"(100,40,70)",
+    "Hit_box-color":"(240,255,240)",
+    "text-color":"(0,255,255)"
 }
