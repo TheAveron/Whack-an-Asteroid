@@ -3,7 +3,7 @@ import json
 from random import randint
 
 from .events import *
-from main import texteGagne, textePerdu
+from global_var import texteGagne, textePerdu
 
 with open('data.json','r') as datafile:
 	game_data=json.load(datafile)
