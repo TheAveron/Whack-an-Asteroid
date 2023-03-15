@@ -1,3 +1,6 @@
 from game_files import *
 
-game(monEcran)
+with open('data.json','r') as datafile:
+	game_data=json.load(datafile)
+
+game(monEcran, game_data)

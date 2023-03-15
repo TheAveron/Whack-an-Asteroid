@@ -4,11 +4,14 @@ from random import randint
 
 from .events import *
 from .global_var import texteGagne, textePerdu
+from .end_screen import *
 
-with open('data.json','r') as datafile:
-	game_data=json.load(datafile)
-
-def game(ecran:pygame.Surface):
+occ=0
+def game(ecran:pygame.Surface, game_data):
+	global occ
+	
+	game_data['jeu_en_cours']=True
+	game_data['cycle']=0
 	while game_data['jeu_en_cours']:
 		
 		ecran.fill(eval(game_data['back-color']))
@@ -25,22 +28,27 @@ def game(ecran:pygame.Surface):
 			game_data['jeu_en_cours']=False
 			if mouseX>posx and mouseX<posx+cote and mouseY>posy and mouseY<posy+cote:
 				game_data["resultat"]=True
+				game_data['score']+=1
 			else:
 				game_data['resultat']=False
+			
 
 		game_data['cycle']+=1
-
+		ecran.blit(maPolice.render(str(game_data['score']),1 , eval(game_data['text-color'])), (10,10))
 		events(game_data)
 		pygame.display.update() #Rafraichissement de la fenêtre
 	
-	game_data["jeu_en_cours"]=True
-	while game_data['jeu_en_cours']:
-		if game_data['resultat']==True:
-			ecran.blit(texteGagne, (game_data['width']*0.5,game_data['height']*0.5))
-			pygame.display.update()
-		elif game_data['resultat']==False:
-			ecran.blit(textePerdu, (game_data['width']*0.5,game_data['height']*0.5))
-			pygame.display.update()
-		
-		events(game_data)
+	
+	if game_data['resultat']==True:
+		ecran.blit(texteGagne, texteGagne.get_rect(center = ecran.get_rect().center))
+		pygame.display.update()
+	elif game_data['resultat']==False:
+		ecran.blit(textePerdu, textePerdu.get_rect(center = ecran.get_rect().center))
+		pygame.display.update()
+	
+	pygame.time.delay(10)
+	print("waiting ! ")
+	occ+=1
+	if occ<100:game(ecran, game_data)
+	else:end(ecran, game_data)
 
