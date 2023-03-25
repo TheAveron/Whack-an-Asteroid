@@ -1,6 +1,7 @@
 from game_files import *
 
-with open('data.json','r') as datafile:
-	game_data=json.load(datafile)
+# Lancement de pygame
+pygame.init()
 
-game(monEcran, game_data)
+# Lancement du menu du jeu
+menu()

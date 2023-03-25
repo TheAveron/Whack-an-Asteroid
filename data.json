@@ -1,6 +1,6 @@
 {
-    "width":800,
-    "height":800,
+    "width":1824,
+    "height":1026,
     "jeu_en_cours":true,
     "clic":false,
     "cycle":0,
@@ -10,5 +10,6 @@
     "Hit_box-color":"(240,255,240)",
     "text-color":"(0,255,255)",
     "score":0,
-    "best-score":0
+    "best-score":0,
+    "clicked_sprites":[]
 }
