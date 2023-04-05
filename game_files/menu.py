@@ -1,32 +1,30 @@
 import pygame
-from .events import *
-from .game import *
+from .events import events
+from .game import game
+from .sprites import *
+from .global_var import Screen, game_data, Background, B_rect
 
-def menu(game_data:dict)->None:
+def menu()->None:
 	'''Menu de démarage du jeu'''
 	
-	Background = pygame.image.load('Static/earth2.jpg')
-
+	# Affichage du fond
+	
+	# Boucle du jeu
 	while game_data['jeu_en_cours']:
-		Screen.blit(Background,(0,0))
-		
-		for sprite in sprites:
-			Screen.blit(sprite.image, sprite.rect)
+		Screen.blit(Background, B_rect)
+		# Affichage de tous les textes
 		for Text in Texts_menu:
 			Screen.blit(Text.text, Text.rect)
 
-		for text in game_data['clicked_sprites']:
-			print('1')
-			try:
-				if text.text_str == 'Jouer':
-					print('2')
-					game_data['jeu_en_cours']=False
-			except:
-				print("2.5")
-				pass
+		# Quitte le menu si le bouton "Jouer" est cliqué
+		for text in game_data['clicked_button_menu']:
+			if text.text_str == 'Jouer':
+				game_data['jeu_en_cours']=False
+			game_data['clicked_button_menu'].remove(text)
 
-		pygame.display.update()
-		events(game_data)
+		pygame.display.flip()
+		events()
 
-	game(Screen, game_data)
+	# Lance le jeu
+	game()
 		
