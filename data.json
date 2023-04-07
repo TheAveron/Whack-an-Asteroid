@@ -4,7 +4,7 @@
     "jeu_en_cours":true,
     "clic":false,
     "cycle":0,
-    "cycle_lenght":50,
+    "cycle_lenght":500,
     "resultat":null,
     "back-color":"(100,40,70)",
     "text-color":"(100,255,0)",

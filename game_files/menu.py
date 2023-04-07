@@ -1,17 +1,17 @@
 import pygame
 from .events import events
 from .game import game
-from .sprites import *
-from .global_var import Screen, game_data, Background, B_rect
+
+from .global_var import *
 
 def menu()->None:
 	'''Menu de démarage du jeu'''
 	
-	# Affichage du fond
-	
-	# Boucle du jeu
+	# Boucle d'affichage du menu
 	while game_data['jeu_en_cours']:
-		Screen.blit(Background, B_rect)
+		# Affichage du fond
+		player.back_show()
+		
 		# Affichage de tous les textes
 		for Text in Texts_menu:
 			Screen.blit(Text.text, Text.rect)
@@ -22,9 +22,10 @@ def menu()->None:
 				game_data['jeu_en_cours']=False
 			game_data['clicked_button_menu'].remove(text)
 
-		pygame.display.flip()
+		pygame.display.update()
 		events()
 
 	# Lance le jeu
-	game()
-		
+	while True:
+		pygame.display.update()
+		game()

@@ -1,10 +1,7 @@
-import pygame
-from random import randint, choice
-
+from .screen import *
+from .global_var import *
 from .events import events
 from .end_screen import end
-from .sprites import *
-from .global_var import Screen, game_data, Background, B_rect
 
 occ=0
 def game()->None:
@@ -14,8 +11,9 @@ def game()->None:
 	
 	game_data['jeu_en_cours']=True
 	game_data['cycle']=0 # Nombre de cycles effectués
+
 	while game_data['jeu_en_cours']:
-		Screen.blit(Background, B_rect)
+		player.back_show()
 		#génération de carré lorsque l'on a terminé le nombre de cycle requis
 		if game_data['cycle']%game_data['cycle_lenght']==0:
 			for sprite in Taupe.Taupes_list:
@@ -26,26 +24,27 @@ def game()->None:
 		for sprite in Taupe.Taupes_list:
 			sprite.show()
 
-		if Taupe.Taupes_clicked_list == [] and game_data['clic']:
+		if game_data['clic_not_button'] and Taupe.Taupes_list!=[]:
 			Texts_game['Lose'].show()
 			game_data['cycle']+=game_data['cycle']%game_data['cycle_lenght']
 			player.score_var-=10
 
-		for sprite in Taupe.Taupes_clicked_list:
-			Taupe.taupe_unclicked(sprite)
-			Taupe.taupe_remove(sprite)
-			Texts_game['Win'].show()
-
 		game_data['cycle']+=1
+		print(game_data['cycle'])
+
+
 		score_text=Text(player.score(), positions=(-850,-480))
 		Screen.blit(score_text.text, score_text.rect)
-		
-		print(game_data['cycle'])
-		pygame.display.update()
+
 		events()
+		pygame.display.update()
 
 		if player.score_var<0:
-			break
+			game_data['resultat']=False
+			game_data['jeu_en_cours']=False
+		elif player.level_var==20:
+			game_data['resultat']=True
+			game_data['jeu_en_cours']=False
 
 	end()
 
