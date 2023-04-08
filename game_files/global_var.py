@@ -1,15 +1,17 @@
 import pygame
 import json
+from random import randint, choice
 
+from .Sprites import *
+from .screen import *
+
+
+# Récupération des valeurs de la configuration de base du jeu
 with open('data.json','r') as datafile:
-	game_data=json.load(datafile)
+	game_data:dict=json.load(datafile)
 
-pygame.init() #lancement de pygame
+pygame.display.set_caption('Jeu de la taupe') # Définition du titre de la fenêtre
 
-# Police de caractère
-maPolice = pygame.font.SysFont('arial', 30) #Chargement de la police dans la variable maPolice
-texteGagne = maPolice.render("Gagné",  1, eval(game_data['text-color'])) #Creation de l'étiquette "Gagné"
-textePerdu = maPolice.render("Perdu",  1, eval(game_data['text-color'])) #Creation de l'étiquette "Perdu"
-
-# Création de l'environnement
-monEcran=pygame.display.set_mode((game_data['width'] ,game_data['height'])) #Affichage de la fenêtre
+Texts_menu:list[Text] = [Text('Jouer',(0,40), color=(42, 40, 57)), Text('Jeu de la taupe',(0,-200),50,True,color=(42, 40, 57))] # Crée les textes du menu du jeu
+Texts_game:dict[Text] = {'Win':Text('Gagné'), 'Lose':Text('Perdu'),"Pause":Taupe("Pause",type='Pause',position=(game_data['width']-66,20),indexage=False)} # Crée les textes pour les victoires et défaites
+Texts_end:list[Text | dict[Text]]  = [Text('Rejouer',(0,90),60, color=(42, 40, 57)),{"Win":Text("Félicitation vous avez gagné !",(0,-100), bold=True,  color=(42, 40, 57)), 'Lose':Text("C'est dommage, vous avez perdu !",(0,-100),bold=True,  color=(42, 40, 57))}]

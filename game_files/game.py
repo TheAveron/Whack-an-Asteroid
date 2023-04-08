@@ -1,54 +1,56 @@
-import pygame
-import json
-from random import randint
-
-from .events import *
-from .global_var import texteGagne, textePerdu
-from .end_screen import *
+from .screen import *
+from .global_var import *
+from .events import events
+from .end_screen import end
 
 occ=0
-def game(ecran:pygame.Surface, game_data):
+def game()->None:
+	'''Fonction principale du jeu'''
 	global occ
+	pygame.display.flip()
 	
 	game_data['jeu_en_cours']=True
-	game_data['cycle']=0
+	player=Player() # initialise le joueur
+
 	while game_data['jeu_en_cours']:
-		
-		ecran.fill(eval(game_data['back-color']))
-		#génération de carré lorsque l'on a terminé un cycle
-		if game_data['cycle']%game_data['cycle_lenght']==0:
-			cote=randint(20,200)
-			posx=randint(cote,game_data['width']-cote)
-			posy=randint(cote,game_data['height'])
+		if not game_data['pause']:
+			player.back_show()
+			player.check_level()
 
-		pygame.draw.rect(ecran,eval(game_data['Hit_box-color']),(posx,posy,cote,cote))
-		mouseX,mouseY=pygame.mouse.get_pos()
-		
-		if game_data['clic']:
-			game_data['jeu_en_cours']=False
-			if mouseX>posx and mouseX<posx+cote and mouseY>posy and mouseY<posy+cote:
-				game_data["resultat"]=True
-				game_data['score']+=1
-			else:
-				game_data['resultat']=False
+			#génération de carré lorsque l'on a terminé le nombre de cycles requis
+			if player.cycle%player.cycle_lenght==0:
+				for sprite in Taupe.Taupes_list:
+					if sprite.cycle == player.cycle-player.cycle_lenght:
+						Taupe.taupe_remove(sprite)
+				Taupe(type=choice(list(SpritesImages.keys())), cycle=player.cycle, position=(randint(0,1700), randint(0,800)))
 			
+			for sprite in Taupe.Taupes_list:
+				sprite.show()
 
-		game_data['cycle']+=1
-		ecran.blit(maPolice.render(str(game_data['score']),1 , eval(game_data['text-color'])), (10,10))
-		events(game_data)
-		pygame.display.update() #Rafraichissement de la fenêtre
-	
-	
-	if game_data['resultat']==True:
-		ecran.blit(texteGagne, texteGagne.get_rect(center = ecran.get_rect().center))
-		pygame.display.update()
-	elif game_data['resultat']==False:
-		ecran.blit(textePerdu, textePerdu.get_rect(center = ecran.get_rect().center))
-		pygame.display.update()
-	
-	pygame.time.delay(10)
-	print("waiting ! ")
-	occ+=1
-	if occ<100:game(ecran, game_data)
-	else:end(ecran, game_data)
+
+			Texts_game['Pause'].show()
+
+			player.cycle+=1
+
+			score_text=Text(f'Score : {player.score()}', positions=(-850,-480))
+			Screen.blit(score_text.text, score_text.rect)
+
+			score_text=Text(f'Level : {player.level()}', positions=(-860,-450))
+			Screen.blit(score_text.text, score_text.rect)
+
+			pygame.display.update()
+
+		events(player)
+		
+		if player.score_var<0:
+			game_data['resultat']=False
+			game_data['jeu_en_cours']=False
+		elif player.level_var==20:
+			game_data['resultat']=True
+			game_data['jeu_en_cours']=False
+
+	try:
+		end(player)
+	except:
+		pass
 

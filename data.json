@@ -1,14 +1,10 @@
 {
-    "width":800,
-    "height":800,
-    "jeu_en_cours":true,
-    "clic":false,
-    "cycle":0,
-    "cycle_lenght":600,
-    "resultat":null,
-    "back-color":"(100,40,70)",
-    "Hit_box-color":"(240,255,240)",
-    "text-color":"(0,255,255)",
-    "score":0,
-    "best-score":0
+    "width": 1824,
+    "height": 1026,
+    "jeu_en_cours": true,
+    "clic": false,
+    "resultat": null,
+    "best_score": 84,
+    "clicked_button_menu": [],
+    "pause": false
 }
