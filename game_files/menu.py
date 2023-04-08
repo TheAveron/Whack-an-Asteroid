@@ -10,7 +10,7 @@ def menu()->None:
 	# Boucle d'affichage du menu
 	while game_data['jeu_en_cours']:
 		# Affichage du fond
-		player.back_show()
+		Screen.blit(pygame.image.load('Static/earth_pix2.jpg'), pygame.image.load('Static/earth_pix2.jpg').get_rect(center=Screen.get_rect().center))
 		
 		# Affichage de tous les textes
 		for Text in Texts_menu:
@@ -27,5 +27,8 @@ def menu()->None:
 
 	# Lance le jeu
 	while True:
-		pygame.display.update()
-		game()
+		try:
+			game()
+		except:
+			break
+		
