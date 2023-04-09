@@ -1,7 +1,6 @@
 import pygame
 from random import choice
 
-from math import sqrt
 from ..screen import Screen
 
 SpritesImages= {'Little_ship': ["Static/Little_Ship.png",-10],"Big_ship": ['Static/Big_ship.png',-30],'Little_asteroid':["Static/Little_Asteroid.png",60],'Medium_asteroid':["Static/Medium_Asteroid.png",30], 'Big_Asteroid':["Static/Big_Asteroid.png",15]}
