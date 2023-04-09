@@ -1,0 +1,11 @@
+{
+	"width": 1824,
+	"height": 1026,
+	"jeu_en_cours": true,
+	"clic": false,
+	"resultat": null,
+	"clicked_button_menu": [],
+	"pause": false,
+	"win_level":10,
+	"best_score": 0
+}

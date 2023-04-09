@@ -12,6 +12,11 @@ def end(player:Player)->None:
 			data['best_score']=player.score_max
 		json.dump(data, f , indent=4)
 
+	if player.score_var<0:
+		Lose_sound.play()
+	else:
+		Win_sound.play()
+
 	game_data['jeu_en_cours']=True
 	while game_data['jeu_en_cours']:
 		if player.score_var < 0:
@@ -19,11 +24,15 @@ def end(player:Player)->None:
 		else:
 			player.back_show()
 
-		score_text=Text(f"meilleur score : {data['best_score']}",(0,-40),color=(20,20,20),bold=(True))
-		score_text.text_Rect()
+		max_score_text=Text(f"Best score : {data['best_score']}",(0,-40),color=(20,20,20),bold=(True))
+		max_score_text.text_Rect()
 
-		score_text=Text(f"level : {player.level_var}",(0,0),color=(20,20,20),bold=(True))
+		score_text =Text(f"Score : {player.score_max}",(0,10),color=(20,20,20),bold=(True))
 		score_text.text_Rect()
+		level_text=Text(f"level : {player.level_var}",(0,40),color=(20,20,20),bold=(True))
+		level_text.text_Rect()
+
+		
 
 		for text in Texts_end:
 			if type(text)==dict:

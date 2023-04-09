@@ -1,3 +1,4 @@
+from .screen import *
 from .global_var import *
 from .Sprites import *
 from .events import *

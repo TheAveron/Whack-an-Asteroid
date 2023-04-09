@@ -27,6 +27,8 @@ def events(player:Player=None)->None:
 					if taupe.rect.collidepoint(pos):
 						Taupe.taupe_clicked(taupe, player)
 						game_data['taupe_clicked']=True
+
+						Touch_sound.play()
 						
 				game_data['clicked_button_menu']=[s for s in Texts_menu if s.rect.collidepoint(pos)] # Récupère tous les Text du menu qui sont en context avec la souris
 
