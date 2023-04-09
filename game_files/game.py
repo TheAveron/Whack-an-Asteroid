@@ -12,6 +12,10 @@ def game()->None:
 	game_data['jeu_en_cours']=True
 	player=Player() # initialise le joueur
 
+	# musique
+	pygame.mixer.music.load('Static/Sounds/fight.mp3')
+	pygame.mixer.music.play(-1)
+
 	while game_data['jeu_en_cours']:
 		if not game_data['pause']:
 			player.back_show()
@@ -27,15 +31,14 @@ def game()->None:
 			for sprite in Taupe.Taupes_list:
 				sprite.show()
 
-
 			Texts_game['Pause'].show()
 
 			player.cycle+=1
 
-			score_text=Text(f'Score : {player.score()}', positions=(-850,-480))
+			score_text=Text(f'Score : {player.score()}', positions=(20,20), fixed=True)
 			Screen.blit(score_text.text, score_text.rect)
 
-			score_text=Text(f'Level : {player.level()}', positions=(-860,-450))
+			score_text=Text(f'Level : {player.level()}', positions=(20,50),fixed=True)
 			Screen.blit(score_text.text, score_text.rect)
 
 			pygame.display.update()
@@ -45,10 +48,11 @@ def game()->None:
 		if player.score_var<0:
 			game_data['resultat']=False
 			game_data['jeu_en_cours']=False
-		elif player.level_var==20:
+		elif player.level_var==game_data['win_level']:
 			game_data['resultat']=True
 			game_data['jeu_en_cours']=False
 
+	pygame.mixer.music.stop()
 	try:
 		end(player)
 	except:

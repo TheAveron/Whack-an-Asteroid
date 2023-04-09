@@ -1,5 +1,4 @@
 import pygame
-from math import log
 from ..screen import Screen
 
 class Player:
@@ -13,11 +12,11 @@ class Player:
 		self.cycle_lenght=int(round(400*(0.94**self.level_var)))
 
 		# Récupération de l'image de fond
-		self.game_back_img=pygame.image.load('Static/earth_pix2.jpg')
+		self.game_back_img=pygame.image.load('Static/Images/earth_pix2.jpg')
 		self.game_back_rect=self.game_back_img.get_rect(center=Screen.get_rect().center)
 
 		# Récupération de l'image de défaite
-		self.game_lose_img=pygame.image.load('Static/earth_lose_pix.jpg')
+		self.game_lose_img=pygame.image.load('Static/Images/earth_lose_pix.jpg')
 		self.game_lose_rect=self.game_lose_img.get_rect(center=Screen.get_rect().center)
 
 	def score_add(self, amout:int=10)->None:
