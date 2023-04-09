@@ -4,7 +4,8 @@
 	"jeu_en_cours": true,
 	"clic": false,
 	"resultat": null,
-	"best_score": 0,
 	"clicked_button_menu": [],
-	"pause": false
+	"pause": false,
+	"win_level":10,
+	"best_score": 0
 }

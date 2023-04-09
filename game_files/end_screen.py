@@ -24,7 +24,7 @@ def end(player:Player)->None:
 		else:
 			player.back_show()
 
-		max_score_text=Text(f"meilleur score : {data['best_score']}",(0,-40),color=(20,20,20),bold=(True))
+		max_score_text=Text(f"Best score : {data['best_score']}",(0,-40),color=(20,20,20),bold=(True))
 		max_score_text.text_Rect()
 
 		score_text =Text(f"Score : {player.score_max}",(0,10),color=(20,20,20),bold=(True))

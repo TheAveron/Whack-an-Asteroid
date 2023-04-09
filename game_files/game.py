@@ -18,6 +18,7 @@ def game()->None:
 
 	while game_data['jeu_en_cours']:
 		if not game_data['pause']:
+			print('t')
 			player.back_show()
 			player.check_level()
 
