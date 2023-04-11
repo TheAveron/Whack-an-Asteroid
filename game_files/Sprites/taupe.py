@@ -3,66 +3,79 @@ from random import choice
 
 from ..screen import Screen
 
-SpritesImages= {'Little_ship': ["Static/Images/Little_Ship.png",-10],"Big_ship": ['Static/Images/Big_ship.png',-30],'Little_asteroid':["Static/Images/Little_Asteroid.png",60],'Medium_asteroid':["Static/Images/Medium_Asteroid.png",30], 'Big_Asteroid':["Static/Images/Big_Asteroid.png",15]}
+SpritesImages:dict[str, list[str | int]]= {'Little_ship': ["Static/Images/Little_Ship.png",-10],"Big_ship": ['Static/Images/Big_ship.png',-30],'Little_asteroid':["Static/Images/Little_Asteroid.png",60],'Medium_asteroid':["Static/Images/Medium_Asteroid.png",30], 'Big_Asteroid':["Static/Images/Big_Asteroid.png",15]}
+'''Dictionnaire de tous les types de sprites, leurs images et les points de base qui leurs sont attribués'''
 Pause_button="Static/Images/Pause.png"
+'''Chemin d'accès de l'image du boutton de pause'''
 
 
-# Classe des "Taupes"
-class Taupe(pygame.sprite.Sprite):
-	Taupes_list:list=[]
+# Classe des "sprites"
+class Sprite(pygame.sprite.Sprite):
+	Sprites_list:list=[]
+	'''Liste des sprites actifs'''
 
-	def __init__(self, name:str=None, cycle:int=0,type:str=choice(list(SpritesImages.keys())), position:tuple[int, int]=(0,0), indexage:bool=True)->None:
-		'''Permet de créer une "Taupe".
+	def __init__(self, name:str = None, cycle:int = 0, type:str = choice(list(SpritesImages.keys())), position:tuple[int, int] = (0,0), indexage:bool = True)->None:
+		'''Permet de créer un nouveau sprite
 		
-		name: un nom décoratif
+		name: le nom du sprite (non obligatoire et décoratif)
 		cycle: le cycle ou à été crée le sprite
-		type: le type de taupe qui doit être créé
-		position: les coordonées x et y du centre du sprite qui va être créé'''
+		type: le type de sprite qui doit être créé
+		position: les coordonées x et y du centre du sprite qui va être créé
+		indexage: défini si le sprite doit être ajouté à la liste'''
 		
+		# Vérifie si le type du sprite est correct
 		assert (type=="Pause") | (type in SpritesImages.keys()), (f'type: {type} \ntype devrait être égal à une de ces valeurs : {list(SpritesImages.keys())} ou "Pause"')
 		super().__init__()
 		
 		self.name:str = name
+		'''Nom du sprite'''
 		self.cycle:int = cycle
-		
+		'''Cycle auquel le sprite est créé'''
 		self.type:str = type
+		'''Type du sprite'''
 		
 		
 		if self.type!="Pause":
 			self.rewards:int = SpritesImages[self.type][1]
+			'''Récompense positive ou négative en points lorsque l'on cliquera sur le sprite'''
 			self.image:pygame.Surface = pygame.image.load(SpritesImages[self.type][0])
+			'''L'image du sprite'''
 		else:
 			self.image:pygame.Surface = pygame.image.load(Pause_button)
 		
 		self.rect:pygame.Rect = self.image.get_rect(center = Screen.get_rect().center)
+		'''Rectangle du sprite'''
 		self.rect.x, self.rect.y = position
 		
 		if indexage:
-			Taupe.taupe_add(self)
+			Sprite.sprite_add(self)
 	
 	def show(self)->None:
-		'''Affiche la taupe'''
+		'''Ajoute le sprite à l'écran'''
 		Screen.blit(self.image, self.rect)
 
 	def __repr__(self)->str:
-		'''représentation dans la console de l'objet'''
-		return f"Taupe(\n\tname: {self.name}\n\tcycle: {self.cycle}\n\ttype: {self.type}\n\tposition: {self.rect.x,self.rect.y}\n)"
+		'''Représentation dans la console de l'objet'''
+		return f"Sprite(\n\tname: {self.name}\n\tcycle: {self.cycle}\n\ttype: {self.type}\n\tposition: {self.rect.x,self.rect.y}\n)"
 	
-	def taupe_clicked(self, player)->None:
-		'''Ajoute un taupe à la liste des taupes actuellement clickées'''
-		Taupe.taupe_remove(self)
-		level_multiplier = ((4.3**player.level_var ) * (1/(player.level_var+1)))**(1/6)
+	def sprite_clicked(self, player)->None:
+		'''Suprime le sprite et ajoute le nombre de points qui lui correspondent, multiplié par le multiplicateur du niveau'''
+		Sprite.sprite_remove(self)
+		
+		level_multiplier:float = float(((4.3**player.level_var ) * (1/(player.level_var+1)))**(1/6))
+		'''multiplicateur de points en fonction du niveau du jeu'''
+
 		player.score_add(int(self.rewards*level_multiplier))
 	
 	@classmethod
-	def taupe_add(cls, taupe)->None:
-		'''Ajoute un taupe à la liste des taupes actuellement affichées'''
-		cls.Taupes_list.append(taupe)
+	def sprite_add(cls, sprite)->None:
+		'''Ajoute la sprite à la liste des sprites'''
+		cls.Sprites_list.append(sprite)
 	
 	@classmethod
-	def taupe_remove(cls, taupe)->None:
-		'''Enlève un taupe à la liste des taupes actuellement affichées'''
-		cls.Taupes_list.remove(taupe)
-		del taupe
+	def sprite_remove(cls, sprite)->None:
+		'''Enlève la sprite de la liste des sprites et surpime définitivement l'objet'''
+		cls.Sprites_list.remove(sprite)
+		del sprite
 
 
