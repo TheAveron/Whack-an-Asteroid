@@ -1,3 +1,3 @@
 from .player import Player
-from .taupe import Taupe, SpritesImages
+from .taupe import Sprite, SpritesImages
 from .text import Text
