@@ -19,13 +19,13 @@ class Player:
 		'''Longueur d'un cycle de jeu avant l'appartition d'un nouveau sprite'''
 
 		# Récupération de l'image de fond
-		self.game_back_img:pygame.Surface = pygame.image.load('Static/Images/earth_pix2.jpg')
+		self.game_back_img:pygame.Surface = pygame.image.load('Static/Images/Earth_pix.jpg')
 		'''Image du fond du jeu'''
 		self.game_back_rect:pygame.Rect = self.game_back_img.get_rect(center=Screen.get_rect().center)
 		'''Rectangle de l'image du fond'''
 
 		# Récupération de l'image de défaite
-		self.game_lose_img:pygame.Surface = pygame.image.load('Static/Images/earth_lose_pix.jpg')
+		self.game_lose_img:pygame.Surface = pygame.image.load('Static/Images/Earth_lose_pix.jpg')
 		'''Image du fond de défaite du jeu'''
 		self.game_lose_rect:pygame.Rect = self.game_lose_img.get_rect(center=Screen.get_rect().center)
 		'''Rectangle de l'image de fond de défaite'''
@@ -61,4 +61,3 @@ class Player:
 	def lose_show(self)->None:
 		'''Initialise le fond de défaite dans l'affichage'''
 		Screen.blit(self.game_lose_img, self.game_lose_rect)
-

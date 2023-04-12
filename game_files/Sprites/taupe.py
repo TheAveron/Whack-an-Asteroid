@@ -8,7 +8,6 @@ SpritesImages:dict[str, list[str | int]]= {'Little_ship': ["Static/Images/Little
 Pause_button="Static/Images/Pause.png"
 '''Chemin d'accès de l'image du boutton de pause'''
 
-
 # Classe des "sprites"
 class Sprite(pygame.sprite.Sprite):
 	Sprites_list:list=[]
@@ -33,7 +32,6 @@ class Sprite(pygame.sprite.Sprite):
 		'''Cycle auquel le sprite est créé'''
 		self.type:str = type
 		'''Type du sprite'''
-		
 		
 		if self.type!="Pause":
 			self.rewards:int = SpritesImages[self.type][1]

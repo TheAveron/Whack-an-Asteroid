@@ -3,7 +3,6 @@ import pygame, json
 # Lancement de pygame
 pygame.init()
 
-
 # Vérification de si c'est la première fois que le jeu est lancé
 try:
 	# Si ce n'est pas la première fois, un fichier "data.json" devrai exister
@@ -21,4 +20,3 @@ from game_files import *
 
 # Lancement du menu du jeu
 menu()
-

@@ -4,7 +4,6 @@ from .events import *
 def end(player:Player) -> None:
 	'''Ecran d'affichage de fin'''
 
-
 	# Mise à jour des données stockées dans le fichier de configuration avec le nouveau meilleur score s'il y a lieu
 	with open("data.json","r") as f:
 		data = json.load(f)
