@@ -1,5 +1,7 @@
 import pygame, json
+import sys
 
+assert sys.version_info >= (3, 11), "Python doit être mis à jour vers la version 3.11 ou plus pour pouvoir lancer le jeu"
 # Lancement de pygame
 pygame.init()
 
