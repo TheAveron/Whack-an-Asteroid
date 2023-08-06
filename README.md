@@ -6,4 +6,5 @@ L'objectif est ici de défendre la Terre en détruisant les astéroides qui s'en
 **Bonne Chance !**
 
 **P.S**: Vous gagnerez si vous atteignez le niveau 10.
-**P.P.S**: I work on an English traduction for this repo
+
+**P.P.S**: I work on an English traduction for this repo.
