@@ -12,8 +12,8 @@ def menu() -> None:
     while game_data["jeu_en_cours"]:
         # Affichage du fond
         Screen.blit(
-            pygame.image.load("Static/Images/earth_pix2.jpg"),
-            pygame.image.load("Static/Images/earth_pix2.jpg").get_rect(
+            pygame.image.load("Static/Images/earth_pix.jpg"),
+            pygame.image.load("Static/Images/earth_pix.jpg").get_rect(
                 center=Screen.get_rect().center
             ),
         )

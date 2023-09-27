@@ -21,7 +21,7 @@ class Player:
 
         # Récupération de l'image de fond
         self.game_back_img: pygame.Surface = pygame.image.load(
-            "Static/Images/earth_pix2.jpg"
+            "Static/Images/earth_pix.jpg"
         )
         """Image du fond du jeu"""
         self.game_back_rect: pygame.Rect = self.game_back_img.get_rect(

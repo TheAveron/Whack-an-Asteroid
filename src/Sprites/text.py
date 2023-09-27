@@ -10,7 +10,7 @@ class Text(pygame.sprite.Sprite):
         font_size: int = 30,
         bold: bool = False,
         color: tuple[int, int, int] = (255, 240, 0),
-        back_col: tuple[int, int, int] = (0,0,0),
+        back_col: tuple[int, int, int] | None = None,
         fixed: bool = False,
     ) -> None:
         """Permet de créer des textes
