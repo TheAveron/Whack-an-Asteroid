@@ -1,4 +1,10 @@
 import pygame, json
+import sys
+
+# Importation des différentes classes/fonctions/variables du jeu
+from .src import *
+
+assert sys.version_info >= (3, 10), "Python doit être mis à jour vers la version 3.11 ou plus pour pouvoir lancer le jeu"
 
 # Lancement de pygame
 pygame.init()
@@ -14,9 +20,6 @@ except FileNotFoundError:
         data = json.load(f1)
         with open("data.json", "w") as f2:
             json.dump(data, f2, indent=4)
-
-# Importation des différentes classes/fonctions/variables du jeu
-from src import *
 
 # Lancement du menu du jeu
 menu()
