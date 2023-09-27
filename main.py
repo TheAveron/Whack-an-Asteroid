@@ -21,5 +21,7 @@ except FileNotFoundError:
         with open("data.json", "w") as f2:
             json.dump(data, f2, indent=4)
 
+from src import *
+
 # Lancement du menu du jeu
 menu()
