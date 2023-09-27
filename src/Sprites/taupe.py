@@ -1,14 +1,16 @@
+from __future__ import annotations
 import pygame
 from random import choice
 
+from .player import Player
 from ..screen import Screen
 
-SpritesImages: dict[str, list[str | int]] = {
-    "Little_ship": ["Static/Images/Little_Ship.png", -10],
-    "Big_ship": ["Static/Images/Big_ship.png", -30],
-    "Little_asteroid": ["Static/Images/Little_Asteroid.png", 60],
-    "Medium_asteroid": ["Static/Images/Medium_Asteroid.png", 30],
-    "Big_Asteroid": ["Static/Images/Big_Asteroid.png", 15],
+SpritesImages: dict[str, tuple[str, int]] = {
+    "Little_ship": ("Static/Images/Little_Ship.png", -10),
+    "Big_ship": ("Static/Images/Big_ship.png", -30),
+    "Little_asteroid": ("Static/Images/Little_Asteroid.png", 60),
+    "Medium_asteroid": ("Static/Images/Medium_Asteroid.png", 30),
+    "Big_Asteroid": ("Static/Images/Big_Asteroid.png", 15),
 }
 """Dictionnaire de tous les types de sprites, leurs images et les points de base qui leurs sont attribués"""
 Pause_button = "Static/Images/Pause.png"
@@ -17,12 +19,12 @@ Pause_button = "Static/Images/Pause.png"
 
 # Classe des "sprites"
 class Sprite(pygame.sprite.Sprite):
-    Sprites_list: list = []
+    Sprites_list: list[Sprite] = []
     """Liste des sprites actifs"""
 
     def __init__(
         self,
-        name: str = None,
+        name: str = "",
         cycle: int = 0,
         type: str = choice(list(SpritesImages.keys())),
         position: tuple[int, int] = (0, 0),
@@ -72,7 +74,7 @@ class Sprite(pygame.sprite.Sprite):
         """Représentation dans la console de l'objet"""
         return f"Sprite(\n\tname: {self.name}\n\tcycle: {self.cycle}\n\ttype: {self.type}\n\tposition: {self.rect.x,self.rect.y}\n)"
 
-    def sprite_clicked(self, player) -> None:
+    def sprite_clicked(self, player: Player) -> None:
         """Suprime le sprite et ajoute le nombre de points qui lui correspondent, multiplié par le multiplicateur du niveau"""
         Sprite.sprite_remove(self)
 
@@ -84,12 +86,12 @@ class Sprite(pygame.sprite.Sprite):
         player.score_add(int(self.rewards * level_multiplier))
 
     @classmethod
-    def sprite_add(cls, sprite) -> None:
+    def sprite_add(cls, sprite: Sprite) -> None:
         """Ajoute la sprite à la liste des sprites"""
         cls.Sprites_list.append(sprite)
 
     @classmethod
-    def sprite_remove(cls, sprite) -> None:
+    def sprite_remove(cls, sprite: Sprite) -> None:
         """Enlève la sprite de la liste des sprites et surpime définitivement l'objet"""
         cls.Sprites_list.remove(sprite)
         del sprite

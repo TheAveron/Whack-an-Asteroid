@@ -48,7 +48,7 @@ def end(player: Player) -> None:
         level_text.text_Rect()
 
         for text in Texts_end:
-            if type(text) == dict:
+            if isinstance(text, dict):
                 if game_data["resultat"] == True:
                     text["Win"].text_Rect()
                 else:

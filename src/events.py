@@ -1,7 +1,7 @@
 from .global_var import *
 
 
-def events(player: Player = None) -> None:
+def events(player: Player | None = None) -> None:
     """Fonction de détection des évènements"""
     for evenement in pygame.event.get():
         # Détection de la fermeture de la fenêtre

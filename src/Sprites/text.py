@@ -5,12 +5,12 @@ from ..screen import Screen
 class Text(pygame.sprite.Sprite):
     def __init__(
         self,
-        text: str = None,
+        text: str = "",
         positions: tuple[int, int] = (0, 0),
         font_size: int = 30,
         bold: bool = False,
         color: tuple[int, int, int] = (255, 240, 0),
-        back_col: tuple[int, int, int] = None,
+        back_col: tuple[int, int, int] = (0,0,0),
         fixed: bool = False,
     ) -> None:
         """Permet de créer des textes

@@ -8,7 +8,7 @@ from .screen import *
 
 # Récupération des valeurs de la configuration du jeu
 with open("data.json", "r") as datafile:
-    game_data: dict[bool | dict | int] = json.load(datafile)
+    game_data: dict[str, bool | dict | int] = json.load(datafile)
     """Données de configuation du jeu"""
 
 
@@ -17,7 +17,7 @@ Texts_menu: list[Text] = [
     Text("Whack an Asteroid", (0, -200), 50, True, color=(42, 40, 57)),
 ]
 """Textes du menu de démarage"""
-Texts_game: dict[Text] = {
+Texts_game: dict[str, Text | Sprite] = {
     "Win": Text("Gagné"),
     "Lose": Text("Perdu"),
     "Pause": Sprite(
@@ -25,7 +25,7 @@ Texts_game: dict[Text] = {
     ),
 }
 """Textes de la partie"""
-Texts_end: list[Text | dict[Text]] = [
+Texts_end: list[Text | dict[str, Text]] = [
     Text("Restart", (0, 110), 60, color=(42, 40, 57)),
     {
         "Win": Text("Congratulation you win !", (0, -100), 30, True, (42, 40, 57)),
