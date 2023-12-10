@@ -1,4 +1,6 @@
-import pygame, json
+import json
+
+import pygame
 
 # récupération des données du jeu
 with open("data.json", "r") as datafile:

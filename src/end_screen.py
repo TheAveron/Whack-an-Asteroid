@@ -1,5 +1,5 @@
-from .global_var import *
 from .events import *
+from .global_var import *
 
 
 def end(player: Player) -> None:

@@ -1,9 +1,10 @@
-from .screen import *
-from .global_var import *
-from .events import events
 from .end_screen import end
+from .events import events
+from .global_var import *
+from .screen import *
 
 occ = 0
+
 
 def game() -> None:
     """Fonction principale du jeu"""
@@ -69,7 +70,6 @@ def game() -> None:
 
     pygame.mixer.music.stop()  # Stope la musique
 
-    
     try:
         end(player)
     except:
