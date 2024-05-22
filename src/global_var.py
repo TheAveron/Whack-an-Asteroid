@@ -39,5 +39,5 @@ Touch_sound = pygame.mixer.Sound("Static/Sounds/touch.wav")
 """Son de touche des sprites"""
 Lose_sound = pygame.mixer.Sound("Static/Sounds/lose.wav")
 """Son de défaite"""
-Win_sound = pygame.mixer.Sound("Static/Sounds/Win.wav")
+Win_sound = pygame.mixer.Sound("Static/Sounds/win.wav")
 """Son de victoire"""

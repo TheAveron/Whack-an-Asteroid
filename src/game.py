@@ -5,7 +5,6 @@ from .screen import *
 
 occ = 0
 
-
 def game() -> None:
     """Fonction principale du jeu"""
     global occ
@@ -70,6 +69,7 @@ def game() -> None:
 
     pygame.mixer.music.stop()  # Stope la musique
 
+    
     try:
         end(player)
     except:
