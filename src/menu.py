@@ -1,7 +1,7 @@
 import pygame
+
 from .events import events
 from .game import game
-
 from .global_var import *
 
 

@@ -1,7 +1,7 @@
-from .screen import *
-from .global_var import *
-from .events import events
 from .end_screen import end
+from .events import events
+from .global_var import *
+from .screen import *
 
 occ = 0
 

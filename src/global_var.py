@@ -1,10 +1,10 @@
-import pygame
 import json
-from random import randint, choice
+from random import choice, randint
 
-from .Sprites import *
+import pygame
+
 from .screen import *
-
+from .Sprites import *
 
 # Récupération des valeurs de la configuration du jeu
 with open("data.json", "r") as datafile:

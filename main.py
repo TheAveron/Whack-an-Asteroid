@@ -1,10 +1,12 @@
-import pygame, json
 import sys
 
 assert sys.version_info >= (
     3,
     10,
-), "Python doit être mis à jour vers la version 3.11 ou plus pour pouvoir lancer le jeu"
+), "Python doit être mis à jour vers la version 3.10 ou plus pour pouvoir lancer le jeu"
+
+import json
+import pygame
 
 # Lancement de pygame
 pygame.init()
@@ -24,4 +26,6 @@ except FileNotFoundError:
 from src import *
 
 # Lancement du menu du jeu
+from src.menu import menu
+
 menu()

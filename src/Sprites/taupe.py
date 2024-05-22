@@ -1,9 +1,11 @@
 from __future__ import annotations
-import pygame
+
 from random import choice
 
-from .player import Player
+import pygame
+
 from ..screen import Screen
+from .player import Player
 
 SpritesImages: dict[str, tuple[str, int]] = {
     "Little_ship": ("Static/Images/Little_Ship.png", -10),
