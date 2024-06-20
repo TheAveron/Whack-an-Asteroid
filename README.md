@@ -1,10 +1,8 @@
 # Whack an asteroid
 
-Whack an Asteroid est un jeu de type Tape-Taupe.
-L'objectif est ici de défendre la Terre en détruisant les astéroides qui s'en approchent. Mais attention ! Si vous touchez les vaissaux spatiaux qui apparaissent également à l'écran, vous perdez des points !
+Whack an Asteroid is a Whack a Mole style game.
+The objective is here to defend the Earth from destruction by asteroids. But watch out ! If you touch the spaceships that appear on screen, you will lose points !
 
-**Bonne Chance !**
+**Good Luck !**
 
-**P.S**: Vous gagnerez si vous atteignez le niveau 10.
-
-**P.P.S**: I work on an English traduction for this repo.
+**P.S**: You will win if you reach the level 10.
