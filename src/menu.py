@@ -8,12 +8,15 @@ from .global_var import *
 def menu() -> None:
     """Menu de démarage du jeu"""
 
+    background_image = pygame.image.load("Static/Images/earth_pix.jpg").convert_alpha()
+
     # Boucle d'affichage du menu
     while game_data["jeu_en_cours"]:
         # Affichage du fond
+
         Screen.blit(
-            pygame.image.load("Static/Images/earth_pix.jpg"),
-            pygame.image.load("Static/Images/earth_pix.jpg").get_rect(
+            background_image,
+            background_image.get_rect(
                 center=Screen.get_rect().center
             ),
         )

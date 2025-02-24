@@ -19,6 +19,8 @@ def game() -> None:
     pygame.mixer.music.play(-1)
 
     while game_data["jeu_en_cours"]:
+        game_data = events(player)
+
         if not game_data["pause"]:
             player.back_show()
             player.check_level()
@@ -55,8 +57,15 @@ def game() -> None:
             Screen.blit(level_text.text, level_text.rect)
 
             pygame.display.update()
+            
+            clock.tick(60)
+        else:
+            Texts_game["Pause"].show()
+            pause_text = Text("Jeu en Pause", positions=(400, 300), fixed=True)
+            Screen.blit(pause_text.text, pause_text.rect)
+            pygame.display.update()
 
-        events(player)
+            clock.tick(10)
 
         if player.score_var < 0:
             # Si le joueur à moins de 0 points, il perd

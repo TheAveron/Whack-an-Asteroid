@@ -1,7 +1,7 @@
 from .global_var import *
 
+def events(player: Player | None = None):
 
-def events(player: Player | None = None) -> None:
     """Fonction de détection des évènements"""
     for evenement in pygame.event.get():
         # Détection de la fermeture de la fenêtre
@@ -17,14 +17,21 @@ def events(player: Player | None = None) -> None:
         ):  # L'evénement est un clic sur la souris
             pos = pygame.mouse.get_pos()  # Récupère la position de la souris
             if Texts_game["Pause"].rect.collidepoint(pos):
+                print("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
                 # Active ou déscactive la pause quand le joueur clique dessus
                 if not game_data["pause"]:
-                    game_data["pause"] = True
+                    print("eeeeeeeeeeeeeeeee")
+                    game_data["pause"] = not game_data["pause"]
                     pause_text = Text("Jeu en Pause", (0, 0), 50, True, (42, 40, 57))
                     """Texte de pause"""
                     pause_text.show()
+
+                    print(game_data["pause"])
                 else:
-                    game_data["pause"] = False
+                    print("eeeeeeeeeeeeeeeeeeeTTTTEEEEE")
+                    game_data["pause"] = not game_data["pause"]
+                pygame.time.wait(200)
+
 
             if not game_data["pause"]:
                 # Effectue tous les evènements normaux du jeu si celui-ci n'est pas en pause (si oui  tout est figé)
@@ -46,3 +53,5 @@ def events(player: Player | None = None) -> None:
                 if Texts_end[0].rect.collidepoint(pos):
                     # Stope la boucle du menu de fin ce qui relance une partie (nouvelle itération dans la boucle `while True` située dans le menu)
                     game_data["jeu_en_cours"] = False
+
+    return game_data

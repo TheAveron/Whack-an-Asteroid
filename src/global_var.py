@@ -41,3 +41,5 @@ Lose_sound = pygame.mixer.Sound("Static/Sounds/lose.wav")
 """Son de défaite"""
 Win_sound = pygame.mixer.Sound("Static/Sounds/win.wav")
 """Son de victoire"""
+
+clock = pygame.time.Clock()
